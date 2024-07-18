@@ -96,3 +96,10 @@ def add_edge(self, city1, city2):
       self.cities[n_city1].add_neighbour(self.cities[n_city2])
       self.cities[n_city2].add_neighbour(self.cities[n_city1])
   
+def get_neighbors(self , city):
+    n_city = city.lower()
+    
+    if n_city in self.cities:
+      return self.cities[n_city].city_neighbours
+
+    return []

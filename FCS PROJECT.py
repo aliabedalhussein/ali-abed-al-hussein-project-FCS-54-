@@ -110,3 +110,15 @@ def display_graph(self):
       neighbor_names = [neighbor.city_name for neighbor in neighbors] 
       
       print(f"{key}:  {', '.join(neighbor_names)}")
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------
+
+
+class WeDeliverProcess:
+  def __init__(self, predefined_data):
+      self.drivers = LinkedList()
+      self.graph = Graph()
+      self.driver_count = 0
+      self.initialize_from_data(predefined_data)
+

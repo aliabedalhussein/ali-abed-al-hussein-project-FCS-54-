@@ -168,3 +168,15 @@ class WeDeliverProcess:
         else:
             print(f"No drivers found in {city}.")
 
+
+    def view_all_drivers(self):
+        self.drivers.display()
+
+    def show_cities(self):
+        print(f"Cities in the system : {','.join(self.graph.cities.keys())}")
+
+    def view_graph(self):
+        self.graph.display_graph()
+
+
+        

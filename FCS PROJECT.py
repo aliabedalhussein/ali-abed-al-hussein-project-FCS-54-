@@ -248,4 +248,27 @@ def main_menu():
     system = WeDeliverProcess(predefined_data)
     
 
-    
+    while True:
+        print("Hello! Please enter:")
+        print("1. To go to the drivers’ menu")
+        print("2. To go to the cities’ menu")
+        print("3. To exit the system")
+        print()
+        
+        ch = input("Your choice:")
+
+        print()
+        
+        if ch == '1':
+            drivers_menu(system)
+            print()
+        elif ch == '2':
+            cities_menu(system)
+            print()
+        elif ch == '3':
+            print("exsiting the system...")
+            print()
+            break
+        else:
+            print("Invalid choice. Please try again.")
+            print()

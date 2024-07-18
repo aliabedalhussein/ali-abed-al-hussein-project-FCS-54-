@@ -306,3 +306,44 @@ def drivers_menu(system):
         else:
             print("Invalid choice. Please try again.")
             print()
+
+
+
+def cities_menu(system):
+    while True:
+        print("Enter:")
+        print("1. Show cities")
+        print("2. Print neighboring cities")
+        print("3. Print the cities graph")
+        print("4. Add an edge between cities")
+        print("5. Go back to main menu")
+
+        print()
+        
+        ch = input("Your choice:")
+
+        print()
+        
+        if ch == '1':
+            system.show_cities()
+            print()
+        elif ch == '2':
+            city = input("Enter city name: ")
+            system.print_city_neighbors(city)
+            print()
+        elif ch == '3':
+            system.view_graph()
+            print()
+        elif ch == '4':
+            city1 = input("Enter the first city: ")
+            city2 = input("Enter the second city: ")
+            
+            system.add_edge_between_cities(city1, city2)
+            print()
+        elif ch == '5':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+            print()
+
+

@@ -13,3 +13,63 @@ class City:
   def add_neighbour(self , neighbour):
     if neighbour not in self.city_neighbours:
       self.city_neighbours.append(neighbour)
+
+#----------------------------------------------------------------------------------------------------------------------------------------
+
+
+class Node:
+  def __init__(self,driver):
+    self.driver = driver
+    self.next = None
+
+class LinkedList:
+  def __init__(self):
+    self.head = None
+    self.tail = None
+    self.size = 0
+
+  def add_driver(self , driver):
+    n = Node(driver)
+
+    if self.head is None:
+      self.head = n
+      self.tail = n
+      self.size = 1
+    else:
+      n.next = self.head
+      self.head = n
+      self.size += 1
+
+  def append(self , driver):
+    n= Node(driver)
+    
+    if not self.tail:
+      self.head = self.tail = n
+      self.size = 1
+    else:
+      self.tail.next = n
+      self.tail = n
+      self.size += 1
+
+  def display(self):
+    cur = self.head
+
+    while cur is not None:
+      print(f"{cur.driver.driver_id}, {cur.driver.driver_name}, {cur.driver.driver_start_city}")
+
+
+      cur = cur.next
+
+  def search_for_drivers_by_city(self , city):
+    city = city.lower()
+    
+    cur = self.head
+    drivers_in_city = []
+
+    while cur is not None:
+      if city.lower() == cur.driver.driver_start_city.lower():
+        drivers_in_city.append(cur.driver)
+
+      cur = cur.next
+
+    return drivers_in_city

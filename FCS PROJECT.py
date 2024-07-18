@@ -139,3 +139,21 @@ class WeDeliverProcess:
         self.driver_count += 1
 
         return f"ID {self.driver_count:03d}"
+
+
+    def add_driver(self, name, start_city, suppress_message=False):
+        if start_city.lower() not in self.graph.cities:
+            add_city = input(f"{start_city} is not in the database. Do you want to add it? (y/n): ").lower()
+            if add_city == "y":
+                self.graph.add_city(start_city)
+            else:
+                print("Drivers cannot be added to the system without a valid starting city.")
+                return
+
+        driver_id = self.generate_id()
+        new_driver = Driver(driver_id, name, start_city)
+        self.drivers.add_driver(new_driver)
+
+        if not suppress_message:
+            print(f"Driver {name} is successfully added to the system.")
+

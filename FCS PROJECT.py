@@ -272,3 +272,37 @@ def main_menu():
         else:
             print("Invalid choice. Please try again.")
             print()
+
+
+
+def drivers_menu(system):
+    while True:
+        print("Enter:")
+        print("1. To view all the drivers")
+        print("2. To add a driver")
+        print("3. To search for drivers by city")
+        print("4. To go back to main menu")
+
+        print()
+        
+        ch = input("Your choice:")
+
+        print()
+        
+        if ch == '1':
+            system.view_all_drivers()
+            print()
+        elif ch == '2':
+            name = input("Enter driver's name: ")
+            start_city = input("Enter driver's start city: ")
+            system.add_driver(name , start_city)
+            print()
+        elif ch == '3':
+            city = input("Enter city name: ")
+            system.search_driver_by_city_name(city)
+            print()
+        elif ch == '4':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+            print()

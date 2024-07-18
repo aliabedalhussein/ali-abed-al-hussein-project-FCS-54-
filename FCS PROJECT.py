@@ -103,3 +103,10 @@ def get_neighbors(self , city):
       return self.cities[n_city].city_neighbours
 
     return []
+
+def display_graph(self):
+    for key , object in self.cities.items(): 
+      neighbors = self.get_neighbors(key)
+      neighbor_names = [neighbor.city_name for neighbor in neighbors] 
+      
+      print(f"{key}:  {', '.join(neighbor_names)}")

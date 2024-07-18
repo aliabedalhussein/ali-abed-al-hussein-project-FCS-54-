@@ -189,3 +189,26 @@ class WeDeliverProcess:
         else:
             print(f"City {city} is not in the database.")
 
+
+    def add_edge_between_cities(self, city1, city2):
+        city1 = city1.lower()
+        city2 = city2.lower()
+
+        if city1 not in self.graph.cities:
+            add_city = input(f"{city1} is not in the database. Do you want to add it? (y/n): ").lower()
+            if add_city == "y":
+                self.graph.add_city(city1)
+            else:
+                print(f"Cannot add an edge with a non-existing city: {city1}")
+                return
+
+        if city2 not in self.graph.cities:
+            add_city = input(f"{city2} is not in the database. Do you want to add it? (y/n): ").lower()
+            if add_city == "y":
+                self.graph.add_city(city2)
+            else:
+                print(f"Cannot add an edge with a non-existing city: {city2}")
+                return
+
+        self.graph.add_edge(city1, city2)
+        print(f"Edge between {city1} and {city2} has been added.")

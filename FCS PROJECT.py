@@ -157,3 +157,14 @@ class WeDeliverProcess:
         if not suppress_message:
             print(f"Driver {name} is successfully added to the system.")
 
+
+    def search_driver_by_city_name(self , city):
+        drivers = self.drivers.search_for_drivers_by_city(city)
+        
+        if drivers:
+            print(f"Drivers in {city}:")
+            for driver in drivers:
+                print(f"{driver.driver_id}, {driver.driver_name}, {driver.driver_start_city}")
+        else:
+            print(f"No drivers found in {city}.")
+

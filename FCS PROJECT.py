@@ -179,4 +179,13 @@ class WeDeliverProcess:
         self.graph.display_graph()
 
 
-        
+    def print_city_neighbors(self, city):
+        n_city = city.lower()
+
+        if n_city in self.graph.cities:
+            neighbors = self.graph.get_neighbors(n_city)
+            neighbor_names = [neighbor.city_name for neighbor in neighbors]
+            print(f"Neighbors of {city} : {', '.join(neighbor_names)}")  # Changed 'neighbor' to 'neighbor_names'
+        else:
+            print(f"City {city} is not in the database.")
+

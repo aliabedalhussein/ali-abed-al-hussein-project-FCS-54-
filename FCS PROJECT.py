@@ -73,3 +73,17 @@ class LinkedList:
       cur = cur.next
 
     return drivers_in_city
+  
+
+#----------------------------------------------------------------------------------------------------------------------------------------
+
+
+class Graph:
+  def __init__(self):
+    self.cities = {}
+
+  def add_city(self , city_name):
+    n_name = city_name.lower()
+    
+    if n_name not in self.cities:
+      self.cities[n_name] = City(n_name)

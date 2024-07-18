@@ -212,3 +212,37 @@ class WeDeliverProcess:
 
         self.graph.add_edge(city1, city2)
         print(f"Edge between {city1} and {city2} has been added.")
+
+#----------------------------------------------------------------------------------------------------------------------------------------
+
+
+def main_menu():
+
+  # Predefined data
+  predefined_data = {
+      "cities": {
+          "Beirut": ["Tripoli", "Sidon", "Byblos", "Zahle", "Jounieh"],
+          "Tripoli": ["Beirut", "Byblos", "Akkar", "Batroun"],
+          "Sidon": ["Beirut", "Tyre"],
+          "Byblos": ["Tripoli", "Beirut", "Jounieh"],
+          "Zahle": ["Beirut", "Baalbek"],
+          "Akkar": ["Tripoli", "Bcharre"],
+          "Tyre": ["Sidon"],
+          "Jounieh": ["Byblos", "Beirut"],
+          "Batroun": ["Tripoli"],
+          "Baalbek": ["Zahle"],
+          "Bcharre": ["Akkar"]
+      },
+      "drivers": [
+          {"driver_id": "ID001", "driver_name": "Ali Hassan", "driver_start_city": "Beirut"},
+          {"driver_id": "ID002", "driver_name": "Sara Khalil", "driver_start_city": "Tripoli"},
+          {"driver_id": "ID003", "driver_name": "Maya Aoun", "driver_start_city": "Sidon"},
+          {"driver_id": "ID004", "driver_name": "Nabil Salim", "driver_start_city": "Byblos"},
+          {"driver_id": "ID005", "driver_name": "Hassan Youssef", "driver_start_city": "Zahle"},
+          {"driver_id": "ID006", "driver_name": "Lina Saad", "driver_start_city": "Akkar"},
+          {"driver_id": "ID007", "driver_name": "Jad Ghanem", "driver_start_city": "Tyre"},
+          {"driver_id": "ID008", "driver_name": "Elie Hanna", "driver_start_city": "Jounieh"}
+      ]
+  }
+
+

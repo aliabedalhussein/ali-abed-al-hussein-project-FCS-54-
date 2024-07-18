@@ -1,126 +1,109 @@
 class Driver:
-  def __init__(self , driver_id , driver_name , driver_start_city):
-    self.driver_id = driver_id
-    self.driver_name = driver_name
-    self.driver_start_city = driver_start_city
+    def __init__(self, driver_id, driver_name, driver_start_city):
+        self.driver_id = driver_id
+        self.driver_name = driver_name
+        self.driver_start_city = driver_start_city
 
 
 class City:
-  def __init__(self , city_name):
-    self.city_name = city_name
-    self.city_neighbours = []
+    def __init__(self, city_name):
+        self.city_name = city_name
+        self.city_neighbours = []
   
-  def add_neighbour(self , neighbour):
-    if neighbour not in self.city_neighbours:
-      self.city_neighbours.append(neighbour)
-
-#----------------------------------------------------------------------------------------------------------------------------------------
+    def add_neighbour(self, neighbour):
+        if neighbour not in self.city_neighbours:
+            self.city_neighbours.append(neighbour)
 
 
 class Node:
-  def __init__(self,driver):
-    self.driver = driver
-    self.next = None
+    def __init__(self, driver):
+        self.driver = driver
+        self.next = None
+
 
 class LinkedList:
-  def __init__(self):
-    self.head = None
-    self.tail = None
-    self.size = 0
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
 
-  def add_driver(self , driver):
-    n = Node(driver)
+    def add_driver(self, driver):
+        n = Node(driver)
+        if self.head is None:
+            self.head = n
+            self.tail = n
+            self.size = 1
+        else:
+            n.next = self.head
+            self.head = n
+            self.size += 1
 
-    if self.head is None:
-      self.head = n
-      self.tail = n
-      self.size = 1
-    else:
-      n.next = self.head
-      self.head = n
-      self.size += 1
+    def append(self, driver):
+        n = Node(driver)
+        if not self.tail:
+            self.head = self.tail = n
+            self.size = 1
+        else:
+            self.tail.next = n
+            self.tail = n
+            self.size += 1
 
-  def append(self , driver):
-    n= Node(driver)
-    
-    if not self.tail:
-      self.head = self.tail = n
-      self.size = 1
-    else:
-      self.tail.next = n
-      self.tail = n
-      self.size += 1
+    def display(self):
+        cur = self.head
+        while cur is not None:
+            print(f"{cur.driver.driver_id}, {cur.driver.driver_name}, {cur.driver.driver_start_city}")
+            cur = cur.next
 
-  def display(self):
-    cur = self.head
-
-    while cur is not None:
-      print(f"{cur.driver.driver_id}, {cur.driver.driver_name}, {cur.driver.driver_start_city}")
-
-
-      cur = cur.next
-
-  def search_for_drivers_by_city(self , city):
-    city = city.lower()
-    
-    cur = self.head
-    drivers_in_city = []
-
-    while cur is not None:
-      if city.lower() == cur.driver.driver_start_city.lower():
-        drivers_in_city.append(cur.driver)
-
-      cur = cur.next
-
-    return drivers_in_city
-  
-
-#----------------------------------------------------------------------------------------------------------------------------------------
+    def search_for_drivers_by_city(self, city):
+        city = city.lower()
+        cur = self.head
+        drivers_in_city = []
+        while cur is not None:
+            if city.lower() == cur.driver.driver_start_city.lower():
+                drivers_in_city.append(cur.driver)
+            cur = cur.next
+        return drivers_in_city
 
 
 class Graph:
-  def __init__(self):
-    self.cities = {}
+    def __init__(self):
+        self.cities = {}
 
-  def add_city(self , city_name):
-    n_name = city_name.lower()
-    
-    if n_name not in self.cities:
-      self.cities[n_name] = City(n_name)
+    def add_city(self, city_name):
+        n_name = city_name.lower()
+        if n_name not in self.cities:                                           
+            self.cities[n_name] = City(n_name)                  
+                                                    # "beirut": {
+                                                    #             "city_name": "beirut",
+                                                    #             "city_neighbours": ["tripoli", "sidon", "byblos", "zahle", "jounieh"]
+                                                    #           }
 
-def add_edge(self, city1, city2):
-    n_city1 = city1.lower()
-    n_city2 = city2.lower()
+    def add_edge(self, city1, city2):
+        n_city1 = city1.lower() 
+        n_city2 = city2.lower()
+        if n_city1 in self.cities and n_city2 in self.cities:
+            self.cities[n_city1].add_neighbour(self.cities[n_city2])
+            self.cities[n_city2].add_neighbour(self.cities[n_city1])
 
-    if n_city1 in self.cities and n_city2 in self.cities:
-      self.cities[n_city1].add_neighbour(self.cities[n_city2])
-      self.cities[n_city2].add_neighbour(self.cities[n_city1])
-  
-def get_neighbors(self , city):
-    n_city = city.lower()
-    
-    if n_city in self.cities:
-      return self.cities[n_city].city_neighbours
+    def get_neighbors(self, city):
+        n_city = city.lower()
+        if n_city in self.cities:
+            return self.cities[n_city].city_neighbours
+        return []
 
-    return []
-
-def display_graph(self):
-    for key , object in self.cities.items(): 
-      neighbors = self.get_neighbors(key)
-      neighbor_names = [neighbor.city_name for neighbor in neighbors] 
-      
-      print(f"{key}:  {', '.join(neighbor_names)}")
-
-
-#----------------------------------------------------------------------------------------------------------------------------------------
+    def display_graph(self):
+        for key, object in self.cities.items():
+            neighbors = self.get_neighbors(key)
+            neighbor_names = [neighbor.city_name for neighbor in neighbors]
+            print(f"{key}:  {', '.join(neighbor_names)}")
 
 
 class WeDeliverProcess:
     def __init__(self, predefined_data):
-      self.drivers = LinkedList()
-      self.graph = Graph()
-      self.driver_count = 0
-      self.initialize_from_data(predefined_data)
+        self.drivers = LinkedList()
+        self.graph = Graph()
+        self.driver_count = 0
+        self.initialize_from_data(predefined_data)
 
     def initialize_from_data(self, data):
         if "cities" in data:
@@ -134,12 +117,9 @@ class WeDeliverProcess:
             for driver_info in data["drivers"]:
                 self.add_driver(driver_info["driver_name"], driver_info["driver_start_city"], suppress_message=True)
 
-
     def generate_id(self):
         self.driver_count += 1
-
         return f"ID {self.driver_count:03d}"
-
 
     def add_driver(self, name, start_city, suppress_message=False):
         if start_city.lower() not in self.graph.cities:
@@ -157,10 +137,8 @@ class WeDeliverProcess:
         if not suppress_message:
             print(f"Driver {name} is successfully added to the system.")
 
-
-    def search_driver_by_city_name(self , city):
+    def search_driver_by_city_name(self, city):
         drivers = self.drivers.search_for_drivers_by_city(city)
-        
         if drivers:
             print(f"Drivers in {city}:")
             for driver in drivers:
@@ -168,27 +146,23 @@ class WeDeliverProcess:
         else:
             print(f"No drivers found in {city}.")
 
-
     def view_all_drivers(self):
         self.drivers.display()
 
     def show_cities(self):
-        print(f"Cities in the system : {','.join(self.graph.cities.keys())}")
+        print(f"Cities in the system: {', '.join(self.graph.cities.keys())}")
 
     def view_graph(self):
         self.graph.display_graph()
 
-
     def print_city_neighbors(self, city):
         n_city = city.lower()
-
         if n_city in self.graph.cities:
             neighbors = self.graph.get_neighbors(n_city)
             neighbor_names = [neighbor.city_name for neighbor in neighbors]
-            print(f"Neighbors of {city} : {', '.join(neighbor_names)}")  # Changed 'neighbor' to 'neighbor_names'
+            print(f"Neighbors of {city}: {', '.join(neighbor_names)}")
         else:
             print(f"City {city} is not in the database.")
-
 
     def add_edge_between_cities(self, city1, city2):
         city1 = city1.lower()
@@ -213,11 +187,8 @@ class WeDeliverProcess:
         self.graph.add_edge(city1, city2)
         print(f"Edge between {city1} and {city2} has been added.")
 
-#----------------------------------------------------------------------------------------------------------------------------------------
-
 
 def main_menu():
-  
     predefined_data = {
         "cities": {
             "Beirut": ["Tripoli", "Sidon", "Byblos", "Zahle", "Jounieh"],
@@ -244,9 +215,7 @@ def main_menu():
         ]
     }
 
-
     system = WeDeliverProcess(predefined_data)
-    
 
     while True:
         print("Hello! Please enter:")
@@ -254,11 +223,11 @@ def main_menu():
         print("2. To go to the cities’ menu")
         print("3. To exit the system")
         print()
-        
-        ch = input("Your choice:")
+
+        ch = input("Your choice: ")
 
         print()
-        
+
         if ch == '1':
             drivers_menu(system)
             print()
@@ -266,7 +235,7 @@ def main_menu():
             cities_menu(system)
             print()
         elif ch == '3':
-            print("exsiting the system...")
+            print("Exiting the system...")
             print()
             break
         else:
@@ -352,4 +321,3 @@ if __name__ == "__main__":
   main_menu()
 
 
-  

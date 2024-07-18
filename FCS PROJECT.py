@@ -116,9 +116,23 @@ def display_graph(self):
 
 
 class WeDeliverProcess:
-  def __init__(self, predefined_data):
+    def __init__(self, predefined_data):
       self.drivers = LinkedList()
       self.graph = Graph()
       self.driver_count = 0
       self.initialize_from_data(predefined_data)
 
+    def initialize_from_data(self, data):
+        if "cities" in data:
+            for city_name in data["cities"]:
+                self.graph.add_city(city_name)
+                for neighbor in data["cities"][city_name]:
+                    self.graph.add_city(neighbor)
+                    self.graph.add_edge(city_name, neighbor)
+
+        if "drivers" in data:
+            for driver_info in data["drivers"]:
+                self.add_driver(driver_info["driver_name"], driver_info["driver_start_city"], suppress_message=True)
+
+
+                

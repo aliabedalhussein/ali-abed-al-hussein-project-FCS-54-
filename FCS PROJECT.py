@@ -87,3 +87,12 @@ class Graph:
     
     if n_name not in self.cities:
       self.cities[n_name] = City(n_name)
+
+def add_edge(self, city1, city2):
+    n_city1 = city1.lower()
+    n_city2 = city2.lower()
+
+    if n_city1 in self.cities and n_city2 in self.cities:
+      self.cities[n_city1].add_neighbour(self.cities[n_city2])
+      self.cities[n_city2].add_neighbour(self.cities[n_city1])
+  

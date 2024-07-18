@@ -135,4 +135,7 @@ class WeDeliverProcess:
                 self.add_driver(driver_info["driver_name"], driver_info["driver_start_city"], suppress_message=True)
 
 
-                
+    def generate_id(self):
+        self.driver_count += 1
+
+        return f"ID {self.driver_count:03d}"
